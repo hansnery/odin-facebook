@@ -10,13 +10,18 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%= render 'layouts/navbar' %>
+
+    <div class="hero is-info has-text-centered">
+      <strong>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      </strong>
+    </div>
   </head>
-
-  <%= render 'layouts/navbar' %>
-
   <body>
-    <%= yield %>
+    <div class="hero is-info is-fullheight">
+      <%= yield %>
+    </div>
   </body>
 </html>
