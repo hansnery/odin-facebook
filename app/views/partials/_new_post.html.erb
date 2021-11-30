@@ -1,13 +1,15 @@
-<%= form_for :post, url: posts_path do |f| %> 
-  <div class="field">
-    <label class="label">Create post</label>
-    <div class="control">
-      <%= f.text_area :text, placeholder:"What's on your mind?", class:"textarea" %>
-    </div>    
-  </div>
-  <div class="field is-grouped">
-    <div class="control">
-      <%= f.submit "Publish", class:"button is-link" %>
+<%= form_for :post, url: posts_path do |f| %>
+  <div class="box">
+    <div class="field">
+      <label class="label">Create post</label>
+      <div class="control">
+        <%= f.text_area :text, placeholder:"What's on your mind?", class:"textarea" %>
+      </div>    
+    </div>
+    <div class="field is-grouped">
+      <div class="control">
+        <%= f.submit "Publish", class:"button is-link" %>
+      </div>
     </div>
   </div>
 <% end %>
