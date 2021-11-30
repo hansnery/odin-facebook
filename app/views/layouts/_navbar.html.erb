@@ -49,31 +49,33 @@
           <% if user_signed_in? %>
             <div class="buttons">
               <a class="button is-info is-outlined">
-                <%= image_tag current_user.gravatar_url, :class => "gravatar" %>
+                <figure class="image">
+                  <%= image_tag current_user.gravatar_url, :class => "gravatar is-rounded" %>
+                </figure>
                 <strong class="ml-2">
-                  <%= current_user.email %>
+                  <%= current_user.name %>
                 </strong>
               </a>
-              <a class="button is-light">
-                <span class="icon">
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-                  </svg>
-                </span>
-                <span>Sign out</span>
-                <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "button button is-light mr-2" %>
-              </a>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <button class="button button is-light mr-2">
+                  <span class="icon">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                    </svg>
+                  </span>
+                  <strong>Sign out</strong>
+                </button>
+              <% end %>
             </div>
           <% else %>
-            <div class="buttons">
               <%= link_to new_user_registration_path do %>
                 <button class="button button is-info mr-2">
-                  <strong>Sign Up</strong>
+                  <strong>Sign up</strong>
                 </button>
               <% end %>
               <%= link_to new_user_session_path do %>
                 <button class="button is-light">
-                  Sign In
+                  Sign in
                 </button>
               <% end %>
             </div>

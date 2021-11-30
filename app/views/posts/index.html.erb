@@ -1,4 +1,4 @@
-<div class="content p-2 is-medium is-narrow">
+<div class="content p-2 is-narrow">
   <div class="columns">
     <div class="column">
       <!-- First column. -->
@@ -9,14 +9,14 @@
         <div class="box my-4">
           <article class="media">
             <div class="media-left">
-              <figure class="image is-64x64">
-                <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+              <figure class="image is-64x64 mx-0">
+                <%= image_tag post.user.gravatar_url, :class => "gravatar is-rounded" %>
               </figure>
             </div>
             <div class="media-content">
               <div class="content">
                 <p>
-                  <strong><%= post.user.email %></strong> <small>@johnsmith</small> <small>31m</small>
+                  <strong><%= post.user.name %></strong> <small><%= post.user.email %></small><small> - <%= time_ago_in_words(post.created_at.time) %> ago</small>
                   <br>
                   <%= post.text %>
                 </p>
