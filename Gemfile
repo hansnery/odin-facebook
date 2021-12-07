@@ -60,3 +60,5 @@ gem "devise", "~> 4.8"
 gem "omniauth", "~> 2.0"
 
 gem "gravtastic", "~> 3.2"
+
+gem "simple_form", "~> 5.1"

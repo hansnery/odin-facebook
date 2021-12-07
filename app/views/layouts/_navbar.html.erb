@@ -42,20 +42,28 @@
             </a>
           </div>
         </div>
+
+        <a class="navbar-item">
+        <%= simple_form_for :search, url: users_path, method: "GET" do |f| %>
+          <%= f.input :name, label: false, input_html: { placeholder: "Search on The Bugger", value: "", class: "is-overlay px-4" } %>
+        <% end %>
+      </a>
       </div>
 
       <div class="navbar-end">
         <div class="navbar-item">
           <% if user_signed_in? %>
             <div class="buttons">
-              <a class="button is-info is-outlined">
-                <figure class="image">
-                  <%= image_tag current_user.gravatar_url, :class => "gravatar is-rounded" %>
-                </figure>
-                <strong class="ml-2">
-                  <%= current_user.name %>
-                </strong>
-              </a>
+              <%= link_to current_user do %>
+                <button class="button is-info is-outlined">
+                  <figure class="image">
+                    <%= image_tag current_user.gravatar_url, :class => "gravatar is-rounded" %>
+                  </figure>
+                  <strong class="ml-2">
+                    <%= current_user.name %>
+                  </strong>
+                </button>
+              <% end %>
               <%= link_to destroy_user_session_path, method: :delete do %>
                 <button class="button button is-light mr-2">
                   <span class="icon">
