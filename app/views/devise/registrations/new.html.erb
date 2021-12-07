@@ -1,29 +1,52 @@
-<h2>Sign up</h2>
 
+<%= render "devise/shared/error_messages", resource: resource %>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+  <section class="hero is-info">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column box is-5-tablet is-4-desktop is-3-widescreen">
+            <form action="" class="box">
+              <div class="field">
+                <label for="" class="label">Email</label>
+                <div class="control has-icons-left">
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"input required" %>
+                  <span class="icon is-small is-left">
+                    <svg class="p-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path></svg>
+                  </span>
+                </div>
+              </div>
+              <div class="field">
+                <label for="" class="label">Password</label>
+                <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %><br />
+                <div class="control has-icons-left">
+                  <%= f.password_field :password, autocomplete: "new-password", class:"input required" %>
+                  <span class="icon is-small is-left">
+                    <svg class="p-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                  </span>
+                </div>
+              </div>
+              <div class="field">
+                <label for="" class="label">Confirm Password</label>
+                <div class="control has-icons-left">
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"input required" %>
+                  <span class="icon is-small is-left">
+                    <svg class="p-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                  </span>
+                </div>
+              </div>
+              <div class="field">
+                <%= f.submit "Sign up" %>
+              </div>
+            </form>
+            <div class="field">
+              <%= render "devise/shared/links" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 <% end %>
-
-<%= render "devise/shared/links" %>
