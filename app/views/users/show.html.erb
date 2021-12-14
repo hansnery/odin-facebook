@@ -1,10 +1,12 @@
 <div class="content">
+
   <div class="columns is-centered">
-    <div class="column is-7">
+
+    <div class="column is-8">
       <div class="box mt-4">
         <article class="media">
           <div class="media-left">
-            <figure class="image is-64x64 mx-0">
+            <figure class="image is-128x128 mx-0">
               <%= image_tag @user.gravatar_url, :class => "gravatar is-rounded" %>
             </figure>
           </div>
@@ -37,85 +39,51 @@
         </article>
       </div>
     </div>
+    
   </div>
+
   <div class="columns is-centered is-multiline">
+
     <div class="column is-3 py-0">
-      <div class="box">
+      <div class="box" style="min-height: 275px;">
         <article class="media">
-          <div class="media-left">
-            <figure class="image is-64x64 mx-0">
-              <%= image_tag @user.gravatar_url, :class => "gravatar is-rounded" %>
-            </figure>
-          </div>
+          <svg class="media-left icon mt-1 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           <div class="media-content">
             <div class="content">
-              <p class="is-size-3 has-text-left has-text-weight-bold pt-1">
-                <%= @user.name %>
+              <p class="has-text-left">
+                <%= @user.bio %>
               </p>
             </div>
-            <nav class="level is-mobile">
-              <div class="level-left">
-                <a class="level-item" aria-label="reply">
-                  <span class="icon is-small">
-                    <i class="fas fa-reply" aria-hidden="true"></i>
-                  </span>
-                </a>
-                <a class="level-item" aria-label="retweet">
-                  <span class="icon is-small">
-                    <i class="fas fa-retweet" aria-hidden="true"></i>
-                  </span>
-                </a>
-                <a class="level-item" aria-label="like">
-                  <span class="icon is-small">
-                    <i class="fas fa-heart" aria-hidden="true"></i>
-                  </span>
-                </a>
-              </div>
-            </nav>
           </div>
         </article>
       </div>
     </div>
-    <div class="column is-4 pl-0 py-0">
-      <div class="box">
+
+    <div class="column is-5 pl-0 py-0">
+      <div class="box mb-4">
         <article class="media">
           <div class="media-left">
-            <figure class="image is-64x64 mx-0">
+            <figure class="image is-32x32 mx-0">
               <%= image_tag @user.gravatar_url, :class => "gravatar is-rounded" %>
             </figure>
           </div>
           <div class="media-content">
-            <div class="content">
-              <p class="is-size-3 has-text-left has-text-weight-bold pt-1">
-                <%= @user.name %>
-              </p>
+            <%= form_for :post, url: posts_path do |f| %>
+            <div class="field">
+              <%= f.text_field :text, placeholder:"What's on your mind?", class:"input is-rounded" %>
             </div>
-            <nav class="level is-mobile">
-              <div class="level-left">
-                <a class="level-item" aria-label="reply">
-                  <span class="icon is-small">
-                    <i class="fas fa-reply" aria-hidden="true"></i>
-                  </span>
-                </a>
-                <a class="level-item" aria-label="retweet">
-                  <span class="icon is-small">
-                    <i class="fas fa-retweet" aria-hidden="true"></i>
-                  </span>
-                </a>
-                <a class="level-item" aria-label="like">
-                  <span class="icon is-small">
-                    <i class="fas fa-heart" aria-hidden="true"></i>
-                  </span>
-                </a>
-              </div>
-            </nav>
           </div>
+          <div class="field">
+            <div class="control">
+              <%= f.submit "Publish", class:"button is-link ml-4" %>
+            </div>
+          </div>
+          <% end %>
         </article>
       </div>
-    </div>
-    <div class="column is-7 py-0">
+
       <% @user.posts.each do |post| %>
-        <div class="box my-4">
+        <div class="box mt-0 mb-4">
           <article class="media">
             <div class="media-left">
               <figure class="image is-64x64 mx-0">
@@ -124,7 +92,7 @@
             </div>
             <div class="media-content">
               <div class="content">
-                <div class="is-size-6 has-text-left has-text-weight-bold">
+                <div class="is-size-5 has-text-left has-text-weight-bold">
                   <%= @user.name %>
                 </div>
                 <div class="is-size-7 has-text-left has-text-weight-light">
@@ -136,19 +104,28 @@
               </div>
               <nav class="level is-mobile">
                 <div class="level-left">
-                  <a class="level-item" aria-label="reply">
-                    <span class="icon is-small">
-                      <i class="fas fa-reply" aria-hidden="true"></i>
+                  <a class="button level-item" aria-label="like">
+                    <div class="pl-0 pr-1">
+                      Like
+                    </div>
+                    <span class="icon is-medium">
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
                     </span>
                   </a>
-                  <a class="level-item" aria-label="retweet">
-                    <span class="icon is-small">
-                      <i class="fas fa-retweet" aria-hidden="true"></i>
+                  <a class="button level-item" aria-label="comment">
+                    <div class="pl-0 pr-1">
+                      Comment
+                    </div>
+                    <span class="icon is-medium">
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
                     </span>
                   </a>
-                  <a class="level-item" aria-label="like">
-                    <span class="icon is-small">
-                      <i class="fas fa-heart" aria-hidden="true"></i>
+                  <a class="button level-item" aria-label="share">
+                    <div class="pl-0 pr-1">
+                      Share
+                    </div>
+                    <span class="icon is-medium">
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
                     </span>
                   </a>
                 </div>
@@ -158,5 +135,7 @@
         </div>
       <% end %>
     </div>
+    
   </div>
+
 </div>
