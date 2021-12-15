@@ -1,0 +1,36 @@
+<div class="content">
+  <% unless user_signed_in? %>
+    <div class="columns is-centered is-multiline">
+      <div class="column is-3 mt-6">
+        <div class="box mt-6">
+          <figure class="image">
+            <%= image_tag "https://i.imgur.com/KFHMsCF.png" %>
+          </figure>
+          <%= link_to new_user_registration_path do %>
+            <button class="button button is-info my-4 is-fullwidth">
+              <strong>Sign up</strong>
+            </button>
+          <% end %>
+          <%= link_to new_user_session_path do %>
+            <button class="button is-light my-4 is-fullwidth">
+              Sign in
+            </button>
+          <% end %>
+        </div>
+        <div class="columns is-centered">
+          <div class="column"></div>
+          <div class="column">
+            <div class="is-size-7 has-text-centered has-text-weight-bold mt-4">
+              Download the App
+            </div>
+            <figure class="image is-128x128">
+              <%= image_tag "https://i.pinimg.com/originals/e5/63/d9/e563d97183e6468f0f32f4a01c424e68.png" %>
+            </figure>
+          </div>
+          <div class="column"></div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+</div>

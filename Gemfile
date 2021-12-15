@@ -62,3 +62,5 @@ gem "omniauth", "~> 2.0"
 gem "gravtastic", "~> 3.2"
 
 gem "simple_form", "~> 5.1"
+
+gem "font-awesome-rails", "~> 4.7"

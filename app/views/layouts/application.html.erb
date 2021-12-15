@@ -4,13 +4,16 @@
     <title>The Bugger</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <script src="https://kit.fontawesome.com/b4f03dab59.js" crossorigin="anonymous"></script>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <%= render 'layouts/navbar' %>
+    <% unless current_page?(root_path) && !user_signed_in? || current_page?(new_user_session_path) || current_page?(new_user_registration_path) %>
+      <%= render 'layouts/navbar' %>
+    <% end %>
 
     <div class="hero is-primary has-text-centered">
       <strong>

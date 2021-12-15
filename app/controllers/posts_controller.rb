@@ -6,11 +6,10 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       flash[:success] = "Posted successfully"
-      redirect_to posts_path
     else
       flash[:error] = "Something went wrong"
-      redirect_to posts_path
     end
+    redirect_back fallback_location: root_path
   end
 
   def show

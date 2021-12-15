@@ -4,44 +4,51 @@
       <!-- First column. -->
     </div>
     <div class="column">
-      <div class="box my-4">
-        <article class="media">
-          <% @users.each do |user| %>
-            <div class="media-left">
-              <figure class="image is-64x64 mx-0">
-                <%= image_tag user.gravatar_url, :class => "gravatar is-rounded" %>
-              </figure>
-            </div>
-            <div class="media-content">
-              <div class="content">
-                <p>
-                  <strong><%= user.name %></strong>
-                  <br>
-                  <small><%= user.email %></small>
-                </p>
-              </div>
-              <nav class="level is-mobile">
-                <div class="level-left">
-                  <a class="level-item" aria-label="reply">
-                    <span class="icon is-small">
-                      <i class="fas fa-reply" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                  <a class="level-item" aria-label="retweet">
-                    <span class="icon is-small">
-                      <i class="fas fa-retweet" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                  <a class="level-item" aria-label="like">
-                    <span class="icon is-small">
-                      <i class="fas fa-heart" aria-hidden="true"></i>
-                    </span>
-                  </a>
+      <div class="columns">
+        <div class="column">
+          <div class="box my-4">
+            <article class="media">
+              <% if @users.count > 0 %>
+                <% @users.each do |user| %>
+                  <div class="media-left">
+                    <figure class="image is-64x64 mx-0">
+                      <%= image_tag user.gravatar_url, :class => "gravatar is-rounded" %>
+                    </figure>
+                  </div>
+                  <div class="media-content">
+                    <div class="content">
+                      <p>
+                        <strong><%= user.name %></strong>
+                        <br>
+                        <small><%= user.email %></small>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="media-right">
+                    <nav class="level is-mobile">
+                      <div class="level-left">
+                        <a class="button is-info is-light level-item" aria-label="add-friend">
+                          <span class="icon is-medium">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
+                          </span>
+                        </a>
+                      </div>
+                    </nav>
+                  </div>
+                <% end %>
+              <% else %>
+                <div class="columns is-centered is-multiline">
+                  <div class="column is-half">
+                    <p class="is-size-6 has-text-weight-bold">We didn't find any results</p>
+                  </div>
+                  <div class="column is-full">
+                    <p class="px-4 is-size-6 has-text-weight-normal">Make sure everything is typed correctly or try using other keywords.</p>
+                  </div>
                 </div>
-              </nav>
-            </div>
-          <% end %>
-        </article>
+              <% end %>
+            </article>
+          </div>
+        </div>
       </div>
     </div>
     <div class="column">

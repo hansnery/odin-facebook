@@ -68,21 +68,16 @@
             </figure>
           </div>
           <div class="media-content">
-            <%= form_for :post, url: posts_path do |f| %>
+            <%= form_for(@post) do |f| %>
             <div class="field">
               <%= f.text_field :text, placeholder:"What's on your mind?", class:"input is-rounded" %>
-            </div>
-          </div>
-          <div class="field">
-            <div class="control">
-              <%= f.submit "Publish", class:"button is-link ml-4" %>
             </div>
           </div>
           <% end %>
         </article>
       </div>
 
-      <% @user.posts.each do |post| %>
+      <% @user.posts.order(created_at: :desc).each do |post| %>
         <div class="box mt-0 mb-4">
           <article class="media">
             <div class="media-left">
