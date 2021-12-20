@@ -108,7 +108,7 @@
                         </span>
                       </button>
                     <% else %>
-                      <%= link_to like_path(post), method: "put", disabled: true do %>
+                      <%= link_to like_path(post), method: "put" do %>
                         <button class="button is-link is-light is-fullwidth level-item">
                           <% if post.likes.count > 0 %>
                             <strong><%= post.likes.count %></strong>
