@@ -101,12 +101,18 @@
                 <div class="column px-1">
                   <% if user_signed_in? %>
                     <% if post.liked?(current_user) %>
-                      <button class="button is-link is-light is-fullwidth level-item" title="Disabled like button" disabled>
-                        <strong><%= post.likes.count %></strong>
-                        <span class="icon is-medium">
-                          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-                        </span>
-                      </button>
+                      <%= link_to dislike_path(post), method: "put" do %>
+                        <button class="button is-link is-light is-fullwidth level-item">
+                          <% if post.likes.count > 0 %>
+                            <strong><%= post.likes.count %></strong>
+                          <% else %>
+                            <strong>Like</strong>
+                          <% end %>
+                          <span class="icon is-medium">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                          </span>
+                        </button>
+                      <% end %>
                     <% else %>
                       <%= link_to like_path(post), method: "put" do %>
                         <button class="button is-link is-light is-fullwidth level-item">

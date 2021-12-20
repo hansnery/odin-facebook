@@ -27,6 +27,12 @@ class PostsController < ApplicationController
     redirect_back fallback_location: root_path
   end
 
+  def dislike
+    @post = Post.all.find(params[:id])
+    Like.where(user_id: current_user.id, post_id: @post.id).destroy_all
+    redirect_back fallback_location: root_path
+  end
+
   private
 
     def post_params
