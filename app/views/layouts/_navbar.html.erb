@@ -47,7 +47,7 @@
           <div class="field">
             <div class="control has-icons-left has-icons-right">
               <%= form_tag(users_path, method: :get) do %>
-                <%= text_field_tag(:search, params[:search], placeholder: "Search on the Bugger", class: "is-size-6 input") %>
+                <%= text_field_tag(:search, params[:search], placeholder: "Search on the Bugger", class: "is-size-6 input is-rounded") %>
               <% end %>
               <span class="icon is-small is-left">
                 <i class="fas fa-search"></i>
@@ -62,7 +62,7 @@
           <% if user_signed_in? %>
             <div class="buttons px-2">
               <%= link_to current_user do %>
-                <button class="button is-info is-outlined px-4 mx-2">
+                <button class="button is-info is-outlined px-4 mx-2 is-rounded">
                   <figure class="image">
                     <%= image_tag current_user.gravatar_url, :class => "gravatar is-rounded" %>
                   </figure>
@@ -72,7 +72,7 @@
                 </button>
               <% end %>
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <button class="button button is-light">
+                <button class="button button is-light is-rounded">
                   <span class="icon">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
