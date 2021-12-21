@@ -43,11 +43,11 @@
           </div>
         </div> %>
 
-        <a class="navbar-item">
-        <%= simple_form_for :search, url: users_path, method: "GET" do |f| %>
-          <%= f.input :name, label: false, input_html: { placeholder: "Search on The Bugger", value: "", class: "is-overlay px-4" } %>
-        <% end %>
-      </a>
+        <div class="navbar-item">
+          <%= form_tag(users_path, method: :get) do %>
+            <%= text_field_tag(:search, params[:search], placeholder: "Search on the Bugger", class: "is-size-6 input") %>
+          <% end %>
+        </div>
       </div>
 
       <div class="navbar-end">
