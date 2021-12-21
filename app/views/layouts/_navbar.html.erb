@@ -58,9 +58,9 @@
       </div>
 
       <div class="navbar-end">
-        <div class="navbar-item">
-          <% if user_signed_in? %>
-            <div class="buttons px-2">
+        <div class="navbar-item p-0">
+          <div class="buttons">
+            <div class="navbar-item">
               <%= link_to current_user do %>
                 <button class="button is-info is-outlined px-4 mx-2 is-rounded">
                   <figure class="image">
@@ -71,30 +71,30 @@
                   </strong>
                 </button>
               <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item is-hoverable pl-0 pr-4 mr-4">
+          <div class="buttons pl-0 pr-4 mr-4">
+            <div class="button is-info is-outlined is-rounded navbar-link">
+              <span class="icon">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path></svg>
+              </span>
+            </div>
+            
+            <div class="navbar-dropdown px-2 pb-0">
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <button class="button button is-light is-rounded">
+                <div class="button is-light is-rounded">
                   <span class="icon">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
                     </svg>
                   </span>
-                  <strong>Sign out</strong>
-                </button>
+                  <div class="has-text-weight-bold">Sign out</div>
+                </div>
               <% end %>
             </div>
-          <% else %>
-              <%= link_to new_user_registration_path do %>
-                <button class="button button is-info mr-2">
-                  <strong>Sign up</strong>
-                </button>
-              <% end %>
-              <%= link_to new_user_session_path do %>
-                <button class="button is-light">
-                  Sign in
-                </button>
-              <% end %>
-            </div>
-          <% end %>
+          </div>
         </div>
       </div>
     </div>
