@@ -60,7 +60,7 @@
                     <%= image_tag current_user.gravatar_url, :class => "gravatar is-rounded" %>
                   </figure>
                   <strong class="ml-2">
-                    <%= current_user.name %>
+                    <%= current_user.name.split[0] %>
                   </strong>
                 </button>
               <% end %>

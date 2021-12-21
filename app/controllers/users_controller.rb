@@ -3,8 +3,9 @@ class UsersController < ApplicationController
     @users = User.all
     @search = params["search"]
     if @search.present?
-      @searched_name = @search["name"].split(/\W+/)
-      @users = User.where("name LIKE ?", "#{@searched_name[0]}")
+      # @searched_name = @search["name"].split(/\W+/)
+      # @users = User.where(name: "#{@searched_name[0]}")
+      @users = User.where(name: @search["name"])
     end
   end
 
