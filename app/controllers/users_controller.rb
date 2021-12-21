@@ -16,11 +16,7 @@ class UsersController < ApplicationController
   def befriend
     @user = User.all.find(params[:id])
     @friendship = Friendship.create(user_id: current_user.id, friend_id: @user.id)
-    if @friendship.save
-      flash[:notice] = "Friendship request sent successfully"
-    else
-      flash[:alert] = "Something went wrong"
-    end
+    @friendship.save
     redirect_back fallback_location: root_path
   end
 
