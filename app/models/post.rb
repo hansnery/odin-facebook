@@ -7,8 +7,4 @@ class Post < ApplicationRecord
   def liked?(user)
     !!self.likes.find{ |like| like.user_id == user.id }
   end
-
-  # def self.likes
-  #   return Like.all.where(post_id: self.id).count
-  # end
 end

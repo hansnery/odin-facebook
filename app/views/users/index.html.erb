@@ -21,24 +21,33 @@
                     <div class="content">
                       <a>
                         <%= link_to user_path(user) do %>
-                          <strong><%= user.name %></strong>
-                          <br>
-                          <small><%= user.email %></small>
+                          <div class="is-size-5 has-text-weight-bold">
+                            <%= user.name %>
+                          </div>
+                          <div class="is-size-6 has-text-weight-light">
+                            <% if user.friends_with?(current_user) %>
+                              Friend
+                            <% end %>
+                          </div>
                         <% end %>
                       </a>
                     </div>
                   </div>
-                  <div class="media-right">
-                    <nav class="level is-mobile">
-                      <div class="level-left">
-                        <a class="button is-info is-light level-item" aria-label="add-friend">
-                          <span class="icon is-medium">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
-                          </span>
-                        </a>
-                      </div>
-                    </nav>
-                  </div>
+                  <% if user.has_pending_friendship_request?(current_user) && !user.friends_with?(current_user) %>
+                    <button class="button is-info level-item">
+                      <span class="icon is-medium">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
+                      </span>
+                    </button>
+                  <% elsif !user.has_pending_friendship_request?(current_user) && !user.friends_with?(current_user) %>
+                    <%= link_to befriend_path(user), method: "put" do %>
+                      <button class="button is-info is-light level-item">
+                        <span class="icon is-medium">
+                          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
+                        </span>
+                      </button>
+                    <% end %>
+                  <% end %>
                 <% end %>
               <% else %>
                 <div class="columns is-centered is-multiline">
