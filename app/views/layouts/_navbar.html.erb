@@ -74,6 +74,49 @@
             </div>
           </div>
         </div>
+        <div class="navbar-item is-hoverable pl-0">
+          <div class="buttons">
+            <div class="button is-info is-outlined is-rounded navbar-link">
+              <span class="icon">
+                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bell" class="svg-inline--fa fa-bell" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M256 32V51.2C329 66.03 384 130.6 384 208V226.8C384 273.9 401.3 319.2 432.5 354.4L439.9 362.7C448.3 372.2 450.4 385.6 445.2 397.1C440 408.6 428.6 416 416 416H32C19.4 416 7.971 408.6 2.809 397.1C-2.353 385.6-.2883 372.2 8.084 362.7L15.5 354.4C46.74 319.2 64 273.9 64 226.8V208C64 130.6 118.1 66.03 192 51.2V32C192 14.33 206.3 0 224 0C241.7 0 256 14.33 256 32H256zM224 512C207 512 190.7 505.3 178.7 493.3C166.7 481.3 160 464.1 160 448H288C288 464.1 281.3 481.3 269.3 493.3C257.3 505.3 240.1 512 224 512z"></path></svg>
+              </span>
+            </div>
+            <div class="navbar-dropdown px-2 is-right">
+              <% pending_friendships = Friendship.where(friend_id: current_user.id, pending: true) %>
+              <% if pending_friendships.count > 0 %>
+                <% pending_friendships.each do |friendship| %>
+                  <% next if friendship.pending == false || friendship.user_id == current_user.id %>
+                  <% user = User.where(id: friendship.user_id) %>
+                  <% user = user[0]%>
+                  <div class="button is-light is-rounded pb-0 mb-0">
+                    <div class="media-left">
+                      <%= link_to user_path(user) do %>
+                        <figure class="image is-32x32">
+                          <%= image_tag user.gravatar_url, :class => "gravatar is-rounded" %>
+                        </figure>
+                      <% end %>
+                    </div>
+                    <div class="media-content">
+                      <div class="content">
+                        <%= link_to user_path(user) do %>
+                          <div class="is-size-6 has-text-weight-bold">
+                            <%= user.name %>
+                            <b class="is-size-8 has-text-weight-normal">
+                              has sent a friendship request.
+                            </b>
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% else %>
+                There are no notifications at the moment.
+              <% end %>
+            </div>
+          </div>
+        </div>
+        
         <div class="navbar-item is-hoverable pl-0 pr-4 mr-4">
           <div class="buttons pl-0 pr-4 mr-4">
             <div class="button is-info is-outlined is-rounded navbar-link">
@@ -81,7 +124,6 @@
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path></svg>
               </span>
             </div>
-            
             <div class="navbar-dropdown px-2 pb-0">
               <%= link_to destroy_user_session_path, method: :delete do %>
                 <div class="button is-light is-rounded">
