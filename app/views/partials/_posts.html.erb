@@ -23,7 +23,7 @@
             <% if user_signed_in? %>
               <% if post.liked?(current_user) %>
                 <%= link_to dislike_path(post), method: "put" do %>
-                  <button class="button is-link is-light is-fullwidth level-item">
+                  <button class="button is-link is-fullwidth level-item">
                     <% if post.likes.count > 0 %>
                       <strong><%= post.likes.count %></strong>
                     <% else %>
