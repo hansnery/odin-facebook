@@ -13,10 +13,12 @@ class User < ApplicationRecord
   # scope :friends, -> { joins(:friendships).where(user_id: self.id, pending: :false) }
 
   def has_pending_friendship_request?(someone)
-    !Friendship.where(user_id: someone.id, friend_id: self.id, pending: :true).empty?
+    !Friendship.where(user_id: someone.id, friend_id: self.id, pending: :true).empty? ||
+    !Friendship.where(user_id: self.id, friend_id: someone.id, pending: :true).empty?
   end
 
   def friends_with?(someone)
-    !Friendship.where(user_id: someone.id, friend_id: self.id, pending: :false).empty?
+    !Friendship.where(user_id: someone.id, friend_id: self.id, pending: :false).empty? ||
+    !Friendship.where(user_id: self.id, friend_id: someone.id, pending: :false).empty?
   end
 end

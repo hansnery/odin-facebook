@@ -60,22 +60,24 @@
     </div>
 
     <div class="column is-5 pl-0 py-0">
-      <div class="box mb-4">
-        <article class="media">
-          <div class="media-left">
-            <figure class="image is-32x32 mx-0">
-              <%= image_tag @user.gravatar_url, :class => "gravatar is-rounded" %>
-            </figure>
-          </div>
-          <div class="media-content">
-            <%= form_for(@post) do |f| %>
-            <div class="field">
-              <%= f.text_field :text, placeholder:"What's on your mind?", class:"input is-rounded" %>
+      <% if @user.id == current_user.id %>
+        <div class="box mb-4">
+          <article class="media">
+            <div class="media-left">
+              <figure class="image is-32x32 mx-0">
+                <%= image_tag @user.gravatar_url, :class => "gravatar is-rounded" %>
+              </figure>
             </div>
-          </div>
-          <% end %>
-        </article>
-      </div>
+            <div class="media-content">
+              <%= form_for(@post) do |f| %>
+                <div class="field">
+                  <%= f.text_field :text, placeholder:"What's on your mind?", class:"input is-rounded" %>
+                </div>
+              <% end %>
+            </div>
+          </article>
+        </div>
+      <% end %>
 
       <% @user.posts.order(created_at: :desc).each do |post| %>
         <div class="box mt-0 mb-4">
