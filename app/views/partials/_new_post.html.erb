@@ -1,15 +1,16 @@
-<%= form_for :post, url: posts_path do |f| %>
-  <div class="box">
-    <div class="field">
-      <label class="label">Create post</label>
-      <div class="control">
-        <%= f.text_area :text, placeholder:"What's on your mind?", class:"textarea" %>
-      </div>    
+<div class="box mb-4">
+  <article class="media">
+    <div class="media-left">
+      <figure class="image is-32x32 mx-0">
+        <%= image_tag current_user.gravatar_url, :class => "gravatar is-rounded" %>
+      </figure>
     </div>
-    <div class="field is-grouped">
-      <div class="control">
-        <%= f.submit "Publish", class:"button is-link" %>
-      </div>
+    <div class="media-content">
+      <%= form_for(@post) do |f| %>
+        <div class="field">
+          <%= f.text_field :text, placeholder:"What's on your mind?", class:"input is-rounded" %>
+        </div>
+      <% end %>
     </div>
-  </div>
-<% end %>
+  </article>
+</div>

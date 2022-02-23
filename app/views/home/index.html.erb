@@ -19,18 +19,32 @@
         </div>
         <div class="columns is-centered">
           <div class="column"></div>
-          <div class="column">
-            <div class="is-size-7 has-text-centered has-text-weight-bold mt-4">
-              Download the App
+            <div class="column">
+              <div class="is-size-7 has-text-centered has-text-weight-bold mt-4">
+                Download the App
+              </div>
+              <figure class="image is-128x128">
+                <%= image_tag "https://i.pinimg.com/originals/e5/63/d9/e563d97183e6468f0f32f4a01c424e68.png" %>
+              </figure>
             </div>
-            <figure class="image is-128x128">
-              <%= image_tag "https://i.pinimg.com/originals/e5/63/d9/e563d97183e6468f0f32f4a01c424e68.png" %>
-            </figure>
-          </div>
           <div class="column"></div>
         </div>
       </div>
     </div>
+  <% else %>
+    <div class="content p-2 is-narrow">
+      <div class="columns">
+        <div class="column">
+          <!-- First column. -->
+        </div>
+        <div class="column">
+          <%= render 'partials/new_post' %>
+          <%= render 'partials/posts' %>
+        </div>
+        <div class="column">
+          <!-- Second column. -->
+        </div>
+      </div>
+    </div>
   <% end %>
-
 </div>
