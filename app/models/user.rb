@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :friendships
-  has_many :friends, through: :friendships
+  has_many :friendship_requests, through: :friendships
   # scope :friends, lambda { joins(:friendships).where("user_id > ?", self.id) }
   # scope :friends, -> { joins(:friendships).where(user_id: self.id, pending: :false) }
 
@@ -21,5 +21,13 @@ class User < ApplicationRecord
   def friends_with?(someone)
     !Friendship.where(user_id: someone.id, friend_id: self.id, pending: :false).empty? ||
     !Friendship.where(user_id: self.id, friend_id: someone.id, pending: :false).empty?
+  end
+
+  def has_sent_friendship_request?(someone)
+    !Friendship.where(user_id: self.id, friend_id: someone.id, pending: :true).empty?
+  end
+
+  def has_received_friendship_request?(someone)
+    !Friendship.where(user_id: someone.id, friend_id: self.id, pending: :true).empty?
   end
 end

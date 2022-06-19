@@ -2,25 +2,18 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    flash[:success] = "NEW"
   end
   
 
   def index
-    flash[:success] = "INDEX"
     @posts = Post.all.order(created_at: :desc)
-    # @post = Post.find(params[:id])
   end
 
   def create
-    flash[:success] = "CREATE"
     @post = Post.find(params[:post_id])
-    # @text = params[:text]
-    # @text.to_s
-    @comment = Comment.create(comment_params) #text: :text, user_id: current_user.id, post_id: @post.id
+    @comment = Comment.create(comment_params)
     @post.comments << @comment
     @post.save
-    # @comment.save
     if @comment.save
       flash[:success] = "Commented successfully"
     else

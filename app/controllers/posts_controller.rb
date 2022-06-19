@@ -21,14 +21,13 @@ class PostsController < ApplicationController
   def index
     @post = Post.new
     @posts = Post.all.order(created_at: :desc)
-    @friends = current_user.friends
+    @friends = Friendship.where(user_id: current_user.id, pending: false)
     @latest_posts = []
     @friends.each do |friend|
-      friend.posts.map { |post| @latest_posts << post }
+      User.where(id: friend.friend_id)[0].posts.map { |post| @latest_posts << post }
     end
     current_user.posts.map { |post| @latest_posts << post }
     @latest_posts = @latest_posts.sort_by(&:created_at).reverse
-    # @comment = Comment.new
   end
 
   def like
