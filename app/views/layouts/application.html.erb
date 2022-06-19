@@ -11,9 +11,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <% if user_signed_in? %>
-      <%= render 'layouts/navbar' %>
-    <% end %>
+    <%= render 'layouts/navbar' %>
 
     <div class="hero is-primary has-text-centered">
       <strong>
@@ -22,7 +20,7 @@
       </strong>
     </div>
   </head>
-  <body>
+  <body class="has-navbar-fixed-top">
     <div class="hero is-info is-fullheight">
       <%= yield %>
     </div>
