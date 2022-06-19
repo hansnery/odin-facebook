@@ -73,10 +73,10 @@
         </div>
       </div>
     </article>
-    <%= render 'comments/new', locals: {commentable: @post} %>
+    <%#= render 'comments/new', locals: {commentable: @post} %>
     <% if post.comments.count > 0 && post.comments.count < 6 %>
       <% post.comments.each do |comment| %>
-        <% commenter = User.where(id: comment.user_id)[0] %>
+        <% commenter = User.where(id: comment.parent)[0] %>
         <div class="pt-3 has-text-weight-semi-bold">
           <div class="mt-4">
             <article class="media">

@@ -10,27 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_23_191545) do
+ActiveRecord::Schema.define(version: 2022_06_19_033429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
-    t.string "commentable_type"
-    t.integer "commentable_id"
-    t.integer "user_id"
     t.text "body"
+    t.integer "parent"
+    t.string "commentable_type", null: false
+    t.bigint "commentable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "friend_requests", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "requested_id"
-    t.bigint "requester_id"
-    t.index ["requested_id"], name: "index_friend_requests_on_requested_id"
-    t.index ["requester_id"], name: "index_friend_requests_on_requester_id"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
   end
 
   create_table "friendships", force: :cascade do |t|
