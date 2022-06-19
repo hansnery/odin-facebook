@@ -80,7 +80,7 @@
                 </div>
               </div>
             </article>
-            <%#= render 'comments/new', locals: {commentable: post} %>
+            <%#= render 'partials/new_comment', locals: {commentable: post} %>
             <% if post.comments.count > 0 && post.comments.count < 6 %>
               <% post.comments.each do |comment| %>
                 <% commenter = User.where(id: comment.user_id)[0] %>

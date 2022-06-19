@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "home#index"
   resources :posts, :users
-  # resources :posts do
-  #   resources :comments, module: :posts
-  # end
+  resources :posts do
+    resources :comments, module: :posts
+  end
   put 'posts/:id/like', to: 'posts#like', as: 'like'
   put 'posts/:id/dislike', to: 'posts#dislike', as: 'dislike'
   put 'users/:id/befriend', to: 'users#befriend', as: 'befriend'

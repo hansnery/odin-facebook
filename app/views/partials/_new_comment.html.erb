@@ -1,0 +1,16 @@
+<div class="pt-4">
+  <article class="media">
+    <div class="media-left">
+      <figure class="image is-32x32 mx-0">
+        <%= image_tag current_user.gravatar_url, :class => "gravatar is-rounded" %>
+      </figure>
+    </div>
+    <div class="media-content">
+      <%= form_for[commentable, Comment.new] do |f| %>
+        <div class="field">
+          <%= f.text_field :text, placeholder:"Write a comment...", class:"input is-rounded" %>
+        </div>
+      <% end %>
+    </div>
+  </article>
+</div>

@@ -19,7 +19,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    # @post = Post.find(params[:comment][:id])
+    @post = Post.find(params[:id])
     @posts = Post.all.order(created_at: :desc)
     @friends = current_user.friends
     @latest_posts = []
@@ -43,24 +43,9 @@ class PostsController < ApplicationController
     redirect_back fallback_location: root_path
   end
 
-  # def new_post_comment
-  #   @comment = @commentable.comments.new comment_params
-  #   @comment.user = current_user
-  #   if @comment.save
-  #     flash[:success] = "Commented successfully"
-  #   else
-  #     flash[:error] = "Something went wrong"
-  #   end
-  #   redirect_back fallback_location: root_path
-  # end
-
   private
 
     def post_params
       params.require(:post).permit(:text)
     end
-
-    # def comment_params
-    #   params.require(:comments).permit(:body)
-    # end
 end

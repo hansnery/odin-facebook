@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class HomeController < ApplicationController  
   def index
     if user_signed_in?
       @post = Post.new
@@ -9,7 +9,6 @@ class HomeController < ApplicationController
       end
       current_user.posts.map { |post| @latest_posts << post }
       @latest_posts = @latest_posts.sort_by(&:created_at).reverse
-      @comment = Comment.new
     end
   end
 end

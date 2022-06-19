@@ -73,7 +73,25 @@
         </div>
       </div>
     </article>
-    <%#= render 'comments/new', locals: {commentable: @post} %>
+    <%#= render :partial => 'partials/new_comment', :commentable => post %>
+    <%#= render 'partials/new_comment', locals: {commentable: post, comment: @comment } %>
+    <%#= render 'partials/new_comment', :locals => {:controller => 'comments_controller', :action => 'create', :commentable => post }%>
+    <div class="pt-4">
+      <article class="media">
+        <div class="media-left">
+          <figure class="image is-32x32 mx-0">
+            <%= image_tag current_user.gravatar_url, :class => "gravatar is-rounded" %>
+          </figure>
+        </div>
+        <div class="media-content">
+          <%= form_for :comment, :url => new_post_comment_path(post) do |f| %>
+            <div class="field">
+              <%= f.text_field :text, placeholder:"Write a comment...", class:"input is-rounded" %>
+            </div>
+          <% end %>
+        </div>
+      </article>
+    </div>
     <% if post.comments.count > 0 && post.comments.count < 6 %>
       <% post.comments.each do |comment| %>
         <% commenter = User.where(id: comment.parent)[0] %>
