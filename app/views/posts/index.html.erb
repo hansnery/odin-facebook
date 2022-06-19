@@ -4,7 +4,8 @@
       <div class="column">
         <!-- First column. -->
       </div>
-      <div class="column">
+      <div class="column pt-4 mt-6">
+        <%= render 'partials/new_post' %>
         <% @latest_posts.each do |post| %>
           <div class="box mt-0 mb-4">
             <article class="media">
@@ -80,7 +81,28 @@
                 </div>
               </div>
             </article>
-            <%#= render 'partials/new_comment', locals: {commentable: post} %>
+            <%#= render :partial => 'partials/new_comment', :commentable => @post %>
+            <%#= render 'partials/new_comment' %>
+            <%#= render 'partials/new_comment' %>
+            <div class="pt-4">
+              <article class="media">
+                <div class="media-left">
+                  <figure class="image is-32x32 mx-0">
+                    <%= image_tag current_user.gravatar_url, :class => "gravatar is-rounded" %>
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <%= form_for [post, Comment.new] do |f| %>
+                    <div class="field">
+                      <%= f.text_field :text, placeholder:"Write a comment...", class:"input is-rounded" %>
+                      <%= f.hidden_field :user_id, value: current_user.id %>
+                      <%= f.hidden_field :post_id, value: post.id %>
+                      <%= f.hidden_field :parent, value: post.id %>
+                    </div>
+                  <% end %>
+                </div>
+              </article>
+            </div>
             <% if post.comments.count > 0 && post.comments.count < 6 %>
               <% post.comments.each do |comment| %>
                 <% commenter = User.where(id: comment.user_id)[0] %>
@@ -100,7 +122,7 @@
                           <%= time_ago_in_words(comment.created_at.time) %> ago.
                         </div>
                         <div class="pt-2 has-text-left has-text-weight-semi-bold">
-                          <%= comment.body %>
+                          <%= comment.text %>
                         </div>
                       </div>
                     </article>

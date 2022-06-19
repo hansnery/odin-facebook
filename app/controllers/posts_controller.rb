@@ -19,7 +19,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @post = Post.find(params[:id])
+    @post = Post.new
     @posts = Post.all.order(created_at: :desc)
     @friends = current_user.friends
     @latest_posts = []
@@ -28,6 +28,7 @@ class PostsController < ApplicationController
     end
     current_user.posts.map { |post| @latest_posts << post }
     @latest_posts = @latest_posts.sort_by(&:created_at).reverse
+    # @comment = Comment.new
   end
 
   def like
@@ -43,9 +44,14 @@ class PostsController < ApplicationController
     redirect_back fallback_location: root_path
   end
 
+  def post_new_comment
+    @comment = Comment.new
+  end
+
   private
 
     def post_params
       params.require(:post).permit(:text)
     end
+
 end

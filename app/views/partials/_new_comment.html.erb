@@ -6,11 +6,12 @@
       </figure>
     </div>
     <div class="media-content">
-      <%= form_for[commentable, Comment.new] do |f| %>
+      <%= form_for [post, Comment.new] do |f| %>
         <div class="field">
           <%= f.text_field :text, placeholder:"Write a comment...", class:"input is-rounded" %>
         </div>
       <% end %>
+      <%= @comment.inspect %>
     </div>
   </article>
 </div>
